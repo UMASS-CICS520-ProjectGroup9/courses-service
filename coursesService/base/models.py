@@ -15,4 +15,4 @@ class Course(models.Model):
     updated_at = models.DateTimeField(auto_now=True) 
 
     def __repr__(self):
-        return f"Course({self.courseID}, {self.title}, {self.instructor})"
+        return f"Course({self.courseID}, {self.title}, {self.credits}, {self.schedule}, {self.room}, {self.instructor}, {self.requirements}, {self.description}, {self.instruction_mode}, {self.created_at}, {self.updated_at})"
