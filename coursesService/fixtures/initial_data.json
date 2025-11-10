@@ -3,6 +3,7 @@
         "model": "base.course",
         "pk": 1,
         "fields": {
+            "courseSubject": "Computer Science",
             "title": "Introduction to Machine Learning",
             "credits": 3,
             "schedule": "MWF 10:00-11:00",
@@ -19,6 +20,7 @@
         "model": "base.course",
         "pk": 2,
         "fields": {
+            "courseSubject": "Data Science",
             "title": "Data Science Seminar",
             "credits": 1,
             "schedule": "W 15:00-16:30",
@@ -29,6 +31,23 @@
             "instruction_mode": "Online",
             "created_at": "2025-10-05T10:20:30Z",
             "updated_at": "2025-10-22T14:45:00Z"
+        }
+    },
+    {
+        "model": "base.course",
+        "pk": 3,
+        "fields": {
+            "courseSubject": "Mathematics",
+            "title": "Calculus I",
+            "credits": 4,
+            "schedule": "TR 09:00-10:15",
+            "room": "Lederle Hall 101",
+            "instructor": "Dr. Alan Turing",
+            "requirements": "High School Algebra",
+            "description": "Fundamental concepts of calculus including limits, derivatives, and integrals.",
+            "instruction_mode": "In-person",
+            "created_at": "2025-09-15T08:00:00Z",
+            "updated_at": "2025-10-25T11:30:00Z"
         }
     }
 ]
