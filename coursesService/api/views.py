@@ -28,6 +28,8 @@ def getCourses(request):
         courses = courses.filter(title__icontains=title)
     if instructor:
         courses = courses.filter(instructor__icontains=instructor)
+    # Ensure results are consistently ordered by courseSubject (and courseID as tiebreaker)
+    courses = courses.order_by('courseSubject', 'courseID')
 
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data)

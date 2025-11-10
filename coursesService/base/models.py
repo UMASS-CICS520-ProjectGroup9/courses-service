@@ -16,3 +16,7 @@ class Course(models.Model):
 
     def __repr__(self):
         return f"Course({self.courseID}, {self.title}, {self.credits}, {self.schedule}, {self.room}, {self.instructor}, {self.requirements}, {self.description}, {self.instruction_mode})"
+
+    class Meta:
+        # Default ordering when querying Course objects: first by subject, then by id
+        ordering = ["courseSubject", "courseID"]
