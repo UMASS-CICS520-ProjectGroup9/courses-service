@@ -1,53 +1,482 @@
 [
     {
         "model": "base.course",
-        "pk": 1,
         "fields": {
-            "courseSubject": "Computer Science",
-            "title": "Introduction to Machine Learning",
+            "courseSubject": "COMPSCI",
+            "courseID": 501,
+            "title": "Formal Language Theory",
+            "instructor": "David Barrington",
             "credits": 3,
-            "schedule": "MWF 10:00-11:00",
-            "room": "Worcester Hall 201",
-            "instructor": "Prof. Jane Doe",
-            "requirements": "Linear Algebra, Python",
-            "description": "A hands-on course covering supervised learning, feature engineering, and model evaluation.",
-            "instruction_mode": "In-person",
-            "created_at": "2025-10-01T12:34:56Z",
-            "updated_at": "2025-10-20T09:15:00Z"
+            "schedule": "MoWe 5:30PM - 6:45PM",
+            "room": "Integ. Learning Center S131",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
         }
     },
     {
         "model": "base.course",
-        "pk": 2,
         "fields": {
-            "courseSubject": "Data Science",
-            "title": "Data Science Seminar",
-            "credits": 1,
-            "schedule": "W 15:00-16:30",
-            "room": "Online",
-            "instructor": "Ping DD",
-            "requirements": "None",
-            "description": "Weekly seminar series featuring guest speakers from academia and industry.",
-            "instruction_mode": "Online",
-            "created_at": "2025-10-05T10:20:30Z",
-            "updated_at": "2025-10-22T14:45:00Z"
+            "courseSubject": "COMPSCI",
+            "courseID": 508,
+            "title": "Ethical Considerations in Computing",
+            "instructor": "Michelle Trim",
+            "credits": 3,
+            "schedule": "MoWe 10:10AM - 11:25AM",
+            "room": "Computer Science Bldg rm 142",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
         }
     },
     {
         "model": "base.course",
-        "pk": 3,
         "fields": {
-            "courseSubject": "Mathematics",
-            "title": "Calculus I",
+            "courseSubject": "COMPSCI",
+            "courseID": 513,
+            "title": "Logic in Computer Science",
+            "instructor": "Marius Minea",
+            "credits": 3,
+            "schedule": "TuTh 11:30AM - 12:45PM",
+            "room": "Lederle Grad Res Ctr rm A301",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "COMPSCI",
+            "courseID": 514,
+            "title": "Algorithms for Data Science",
+            "instructor": "Cameron Musco",
+            "credits": 3,
+            "schedule": "TuTh 1:00PM - 2:15PM",
+            "room": "Computer Science Labs E110",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "COMPSCI",
+            "courseID": 520,
+            "title": "Theory and Practice of Software Engineering",
+            "instructor": "Heather Conboy",
+            "credits": 3,
+            "schedule": "TuTh 5:30PM - 6:45PM",
+            "room": "Computer Science Labs E110",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Stu Tch Mid Sch 5-8",
+            "instructor": "Carie Ruggiano",
+            "credits": 3,
+            "schedule": "MoTuWeThFr 1:00AM - 1:00AM",
+            "room": "TBA",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Stu Tch Mid Sch 5-8",
+            "instructor": "Carie Ruggiano",
+            "credits": 6,
+            "schedule": "MoTuWeThFr 1:00AM - 1:00AM",
+            "room": "TBA",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Stu Tch Sec 8-12",
+            "instructor": "Carie Ruggiano",
+            "credits": 3,
+            "schedule": "MoTuWeThFr 1:00AM - 1:00AM",
+            "room": "TBA",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Stu Tch Sec 8-12",
+            "instructor": "Carie Ruggiano",
+            "credits": 6,
+            "schedule": "MoTuWeThFr 1:00AM - 1:00AM",
+            "room": "TBA",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Student Teaching",
+            "instructor": "Annemarie Foley",
+            "credits": 6,
+            "schedule": "Mo 8:30AM - 11:30AM",
+            "room": "TBA",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Student Teaching",
+            "instructor": "Lesley Cogswell",
+            "credits": 12,
+            "schedule": "Mo 8:30AM - 11:30AM",
+            "room": "furcolo W room 107",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 500,
+            "title": "Student Teaching",
+            "instructor": "Jane Piselli",
+            "credits": 9,
+            "schedule": "TBA",
+            "room": "TBA",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 503,
+            "title": "Sheltered English Immersion: Access to Academics for PK-12 English Language Learners",
+            "instructor": "Miranda Zhaoyu Wang-Doyle",
+            "credits": 3,
+            "schedule": "MoWe 2:30PM - 3:45PM",
+            "room": "Furcolo Hall 101",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 510,
+            "title": "Teacher Mid/Hs Cls",
+            "instructor": "Carie Ruggiano",
+            "credits": 2,
+            "schedule": "We 4:00PM - 6:30PM",
+            "room": "Furcolo Room W009",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "EDUC",
+            "courseID": 524,
+            "title": "Work Mid/HS Teachers",
+            "instructor": "John Francisco",
+            "credits": 3,
+            "schedule": "We 4:00PM - 6:30PM",
+            "room": "Furcolo Room W009",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 514,
+            "title": "Population Genetics",
+            "instructor": "Norman Johnson",
+            "credits": 3,
+            "schedule": "MoWe 4:00PM - 5:15PM",
+            "room": "Morrill Sci. Ctr. (III) rm 203",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 523,
+            "title": "Histology",
+            "instructor": "Andrew Spracklen",
             "credits": 4,
-            "schedule": "TR 09:00-10:15",
-            "room": "Lederle Hall 101",
-            "instructor": "Dr. Alan Turing",
-            "requirements": "High School Algebra",
-            "description": "Fundamental concepts of calculus including limits, derivatives, and integrals.",
-            "instruction_mode": "In-person",
-            "created_at": "2025-09-15T08:00:00Z",
-            "updated_at": "2025-10-25T11:30:00Z"
+            "schedule": "TuTh 8:30AM - 9:45AM",
+            "room": "Morrill Science Room 311",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 523,
+            "title": "Histology Lab",
+            "instructor": "Staff",
+            "credits": 2,
+            "schedule": "We 9:05AM - 12:05PM",
+            "room": "Integrated Sci Bldg 264",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 523,
+            "title": "Histology Lab",
+            "instructor": "Staff",
+            "credits": 3,
+            "schedule": "We 1:25PM - 4:25PM",
+            "room": "Integrated Sci Bldg 264",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 544,
+            "title": "Ornithology",
+            "instructor": "Staff",
+            "credits": 4,
+            "schedule": "TuTh 11:30AM - 12:45PM",
+            "room": "Morrill 2 Room 319",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 544,
+            "title": "Ornithology Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "We 9:05AM - 12:05PM",
+            "room": "Morrill Sci. Ctr. (III) rm 206",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 544,
+            "title": "Ornithology Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "Th 8:00AM - 11:00AM",
+            "room": "Morrill Sci. Ctr. (III) rm 206",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 548,
+            "title": "Mammalogy",
+            "instructor": "Staff",
+            "credits": 4,
+            "schedule": "MoWeFr 11:15AM - 12:05PM",
+            "room": "Morrill Science Room 311",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 548,
+            "title": "Mammalogy Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "We 1:25PM - 4:25PM",
+            "room": "Morrill Sci. Ctr. (III) rm 204",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 548,
+            "title": "Mammalogy Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "Th 1:00PM - 4:00PM",
+            "room": "Morrill Sci. Ctr. (III) rm 204",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 550,
+            "title": "Animal Behavior",
+            "instructor": "Peter Houlihan",
+            "credits": 4,
+            "schedule": "TuTh 11:30AM - 12:45PM",
+            "room": "Morrill Sci. Ctr. (III) rm 203",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 550,
+            "title": "Animal Behavior Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "Tu 1:00PM - 4:00PM",
+            "room": "Morrill Sci. Ctr. (II) rm 339",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 550,
+            "title": "Animal Behavior Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "Mo 1:25PM - 4:25PM",
+            "room": "Morrill Sci. Ctr. (II) rm 339",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 550,
+            "title": "Animal Behavior",
+            "instructor": "Staff",
+            "credits": 4,
+            "schedule": "TuTh 1:00PM - 2:15PM",
+            "room": "Morrill Sci. Ctr.1 rm N326",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 550,
+            "title": "Animal Behavior Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "We 1:25PM - 4:25PM",
+            "room": "Morrill Sci. Ctr. (II) rm 339",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 550,
+            "title": "Animal Behavior Lab",
+            "instructor": "Staff",
+            "credits": 0,
+            "schedule": "Th 2:30PM - 5:30PM",
+            "room": "Morrill Sci. Ctr. (II) rm 339",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
+        }
+    },
+    {
+        "model": "base.course",
+        "fields": {
+            "courseSubject": "BIOLOGY",
+            "courseID": 559,
+            "title": "Cellular & Molecular Biology II",
+            "instructor": "Staff",
+            "credits": 3,
+            "schedule": "TuTh 1:00PM - 2:15PM",
+            "room": "Morrill 2 Room 319",
+            "requirements": "",
+            "description": "",
+            "instruction_mode": "In Person"
         }
     }
 ]

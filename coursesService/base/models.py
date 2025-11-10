@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Course(models.Model):
-    courseSubject = models.CharField(max_length=100, default="")
     courseID = models.AutoField(primary_key=True)
+    courseSubject = models.CharField(max_length=100, default="")
     title = models.CharField(max_length=200)
     instructor = models.CharField(max_length=100)
     credits = models.IntegerField()
@@ -12,8 +12,7 @@ class Course(models.Model):
     requirements = models.TextField()
     description = models.TextField()
     instruction_mode = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True) 
+
 
     def __repr__(self):
-        return f"Course({self.courseID}, {self.title}, {self.credits}, {self.schedule}, {self.room}, {self.instructor}, {self.requirements}, {self.description}, {self.instruction_mode}, {self.created_at}, {self.updated_at})"
+        return f"Course({self.courseID}, {self.title}, {self.credits}, {self.schedule}, {self.room}, {self.instructor}, {self.requirements}, {self.description}, {self.instruction_mode})"
