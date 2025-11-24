@@ -1,5 +1,5 @@
 
-# Course Service
+# Courses Service
 
 This Django service provides a RESTful API for searching and retrieving university course data. It supports filtering, sorting, and integration with frontend clients.
 
