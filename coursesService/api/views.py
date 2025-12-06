@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 import requests
 from django.db import models
+from django.conf import settings
 from base.models import Course
 from .serializers import CourseSerializer
 
@@ -60,7 +61,7 @@ def createCourse(request):
         course = serializer.save()
         
         # Create associated discussion
-        discussion_service_url = "http://127.0.0.1:8000/api/course-discussions/"
+        discussion_service_url = f"{settings.DISCUSSIONS_API_BASE_URL}course-discussions/"
         discussion_data = {
             "course_id": str(course.courseID),
             "course_subject": course.courseSubject,
@@ -88,7 +89,7 @@ def deleteCourse(request, courseSubject, courseID):
         return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
 
     # Delete associated discussion
-    discussion_service_url = "http://127.0.0.1:8000/api/course-discussions/"
+    discussion_service_url = f"{settings.DISCUSSIONS_API_BASE_URL}course-discussions/"
     url = f"{discussion_service_url}{course.courseSubject}/{course.courseID}/"
     
     try:
