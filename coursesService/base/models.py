@@ -17,7 +17,7 @@ class Course(models.Model):
         description (TextField): Course description.
         instruction_mode (CharField): Mode of instruction (e.g., In Person, Online).
     """
-    courseID = models.AutoField(primary_key=True)
+    courseID = models.IntegerField(primary_key=True)
     courseSubject = models.CharField(max_length=100, default="")
     title = models.CharField(max_length=200)
     instructor = models.CharField(max_length=100)

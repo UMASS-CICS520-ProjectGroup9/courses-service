@@ -1,5 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import status
+import requests
 from django.db import models
 from base.models import Course
 from .serializers import CourseSerializer
@@ -47,4 +49,54 @@ def getCourses(request):
     # Serialize and return the course data
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def createCourse(request):
+    """
+    Create a new course and its associated discussion.
+    """
+    serializer = CourseSerializer(data=request.data)
+    if serializer.is_valid():
+        course = serializer.save()
+        
+        # Create associated discussion
+        discussion_service_url = "http://127.0.0.1:8000/api/course-discussions/"
+        discussion_data = {
+            "course_id": str(course.courseID),
+            "course_subject": course.courseSubject,
+            "title": f"Discussion for {course.title}",
+            "body": f"This is the general discussion thread for {course.courseSubject} {course.courseID}: {course.title}.",
+            "author": "System"
+        }
+        
+        try:
+            requests.post(discussion_service_url, data=discussion_data)
+        except requests.exceptions.RequestException as e:
+            print(f"Failed to create discussion: {e}")
+            
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteCourse(request, courseSubject, courseID):
+    """
+    Delete a course and its associated discussion.
+    """
+    try:
+        course = Course.objects.get(courseSubject=courseSubject, courseID=courseID)
+    except Course.DoesNotExist:
+        return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    # Delete associated discussion
+    discussion_service_url = "http://127.0.0.1:8000/api/course-discussions/"
+    url = f"{discussion_service_url}{course.courseSubject}/{course.courseID}/"
+    
+    try:
+        requests.delete(url)
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to delete discussion: {e}")
+
+    course.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
 
