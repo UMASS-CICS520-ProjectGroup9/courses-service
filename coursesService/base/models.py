@@ -18,6 +18,7 @@ class Course(models.Model):
         instruction_mode (CharField): Mode of instruction (e.g., In Person, Online).
     """
     courseID = models.IntegerField(primary_key=True)
+    creator_id = models.IntegerField(null=True, blank=True) # user ID comes from token
     courseSubject = models.CharField(max_length=100, default="")
     title = models.CharField(max_length=200)
     instructor = models.CharField(max_length=100)

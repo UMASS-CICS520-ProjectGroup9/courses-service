@@ -1,13 +1,15 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 import requests
 from django.db import models
 from django.conf import settings
 from base.models import Course
 from .serializers import CourseSerializer
+from .permissions import IsStudent, IsStaff, IsAdmin
 
 @api_view(['GET'])
+@permission_classes([IsStudent])
 def apiOverview(request):
     """
     Returns a dictionary of available API endpoints for the courses service.
@@ -19,6 +21,7 @@ def apiOverview(request):
     return Response(endpoints)
 
 @api_view(['GET'])
+@permission_classes([IsStudent])
 def getCourses(request):
     """
     Retrieve a list of courses, optionally filtered by query parameters.
@@ -52,13 +55,14 @@ def getCourses(request):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([IsStaff])
 def createCourse(request):
     """
     Create a new course and its associated discussion.
     """
     serializer = CourseSerializer(data=request.data)
     if serializer.is_valid():
-        course = serializer.save()
+        course = serializer.save(creator_id=request.user.id)
         
         # Create associated discussion
         discussion_service_url = f"{settings.DISCUSSIONS_API_BASE_URL}course-discussions/"
@@ -79,6 +83,7 @@ def createCourse(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes([IsStaff])
 def deleteCourse(request, courseSubject, courseID):
     """
     Delete a course and its associated discussion.
@@ -99,5 +104,4 @@ def deleteCourse(request, courseSubject, courseID):
 
     course.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
-
 
