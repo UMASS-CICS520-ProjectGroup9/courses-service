@@ -48,8 +48,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-DISCUSSIONS_API_BASE_URL = "http://127.0.0.1:9005/api/"
-
 SIMPLE_JWT = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,

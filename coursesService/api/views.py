@@ -63,8 +63,7 @@ def createCourse(request):
     serializer = CourseSerializer(data=request.data)
     if serializer.is_valid():
         course = serializer.save(creator_id=request.user.id)
-        
-        # Create associated discussion
+        # Use correct base URL for discussions service
         discussion_service_url = f"{settings.DISCUSSIONS_API_BASE_URL}course-discussions/"
         discussion_data = {
             "course_id": str(course.courseID),
@@ -73,12 +72,10 @@ def createCourse(request):
             "body": f"This is the general discussion thread for {course.courseSubject} {course.courseID}: {course.title}.",
             "author": "System"
         }
-        
         try:
-            requests.post(discussion_service_url, data=discussion_data)
+            requests.post(discussion_service_url, json=discussion_data)
         except requests.exceptions.RequestException as e:
             print(f"Failed to create discussion: {e}")
-            
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -92,16 +89,13 @@ def deleteCourse(request, courseSubject, courseID):
         course = Course.objects.get(courseSubject=courseSubject, courseID=courseID)
     except Course.DoesNotExist:
         return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
-
-    # Delete associated discussion
+    # Use correct base URL for discussions service
     discussion_service_url = f"{settings.DISCUSSIONS_API_BASE_URL}course-discussions/"
     url = f"{discussion_service_url}{course.courseSubject}/{course.courseID}/"
-    
     try:
         requests.delete(url)
     except requests.exceptions.RequestException as e:
         print(f"Failed to delete discussion: {e}")
-
     course.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
