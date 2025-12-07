@@ -25,7 +25,9 @@ SECRET_KEY = 'Umass-CSCI520-FinalProject-Group9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sgtangsweb.pythonanywhere.com']
+STATIC_ROOT = '/home/sgtangsweb/courses-service/static/'
+
 
 
 # Application definition
