@@ -6,7 +6,7 @@ class Course(models.Model):
     """
     Represents a university course with all relevant details.
     Fields:
-        courseID (AutoField): Primary key for the course.
+        courseID (IntegerField): User-selected primary key for the course.
         courseSubject (CharField): Subject code (e.g., COMPSCI, BIOLOGY).
         title (CharField): Course title.
         instructor (CharField): Name of the instructor.
@@ -16,6 +16,7 @@ class Course(models.Model):
         requirements (TextField): Prerequisites or requirements.
         description (TextField): Course description.
         instruction_mode (CharField): Mode of instruction (e.g., In Person, Online).
+    Note: courseID must be provided and unique for each course.
     """
     courseID = models.IntegerField(primary_key=True)
     creator_id = models.IntegerField(null=True, blank=True) # user ID comes from token
@@ -38,3 +39,4 @@ class Course(models.Model):
     class Meta:
         # Default ordering when querying Course objects: first by subject, then by id
         ordering = ["courseSubject", "courseID"]
+        unique_together = ("courseSubject", "courseID")

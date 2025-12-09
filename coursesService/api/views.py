@@ -9,6 +9,10 @@ from .serializers import CourseSerializer
 from .permissions import IsStudent, IsStaff, IsAdmin
 
 @api_view(['GET'])
+def test_routing(request):
+    return Response({'message': 'API routing works'})
+
+@api_view(['GET'])
 @permission_classes([IsStudent])
 def apiOverview(request):
     """
@@ -85,8 +89,9 @@ def deleteCourse(request, courseSubject, courseID):
     """
     Delete a course and its associated discussion.
     """
+    qs = Course.objects.filter(courseSubject__iexact=courseSubject, courseID=courseID)
     try:
-        course = Course.objects.get(courseSubject=courseSubject, courseID=courseID)
+        course = qs.get()
     except Course.DoesNotExist:
         return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
     # Use correct base URL for discussions service
