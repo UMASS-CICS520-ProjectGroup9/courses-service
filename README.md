@@ -1,30 +1,34 @@
-
 # Courses Service
 
-This Django service provides a RESTful API for searching and retrieving university course data. It supports filtering, sorting, and integration with frontend clients.
+This Django RESTful microservice provides endpoints for searching, retrieving, creating, and deleting university course data. It supports filtering, JWT-based authentication, and role-based permissions for integration with a larger academic platform.
 
 ## Features
 - List all courses
-- Filter courses by subject, ID, title, or instructor
-- Results are always sorted by `courseSubject` and `courseID`
-- Designed for integration with frontend search forms and tables
-- Uses JSON fixtures for initial data population
+- Filter by subject, ID, title, or instructor (case-insensitive)
+- Create and delete courses (with role-based access)
+- Automatically creates/deletes associated discussions via external service
+- JWT authentication (integrates with userauthen-service)
+- Uses JSON fixtures for initial data
+- Unit tests for API endpoints
 
 ## API Endpoints
-- `GET /api/courses/` — List all courses, optionally filtered by query parameters:
-  - `courseSubject`: Filter by subject code (e.g., COMPSCI)
-  - `courseID`: Filter by course ID
-  - `title`: Filter by course title
-  - `instructor`: Filter by instructor name
+All endpoints are under `/api/`:
 
-Example:
-```
+- `GET /api/` — API overview
+- `GET /api/courses/` — List all courses, filterable by:
+  - `courseSubject`, `courseID`, `title`, `instructor`
+- `POST /api/courses/create/` — Create a new course (STAFF/ADMIN only)
+- `DELETE /api/courses/<courseSubject>/<courseID>/delete/` — Delete a course (STAFF/ADMIN/owner)
+
+Example filter:
+```http
 GET /api/courses/?courseSubject=COMPSCI&instructor=Smith
 ```
 
 ## Data Model
-The `Course` model includes:
-- `courseID` (AutoField, primary key)
+`base/models.py` defines the `Course` model:
+- `courseID` (IntegerField, primary key)
+- `creator_id` (IntegerField, user ID)
 - `courseSubject` (CharField)
 - `title` (CharField)
 - `instructor` (CharField)
@@ -35,14 +39,12 @@ The `Course` model includes:
 - `description` (TextField)
 - `instruction_mode` (CharField)
 
-
-## Requirements
-Add these to `requirements.txt`:
-
-```
-Django>=5.2
-djangorestframework>=3.14
-```
+## Authentication & Permissions
+- JWT authentication via `ExternalJWTAuthentication` (see `coursesService/authentication.py`)
+- Roles: STUDENT, STAFF, ADMIN
+- Permissions:
+  - List/search: STUDENT+
+  - Create/delete: STAFF/ADMIN (delete also allows owner)
 
 ## Setup & Usage
 1. Install dependencies:
@@ -51,20 +53,45 @@ djangorestframework>=3.14
    ```
 2. Apply migrations:
    ```bash
-   python manage.py migrate
+   python coursesService/manage.py migrate
    ```
 3. Load initial data:
    ```bash
-   python manage.py loaddata fixtures/initial_data.json
+   python coursesService/manage.py loaddata fixtures/initial_data.json
    ```
 4. Run the development server:
    ```bash
-   python manage.py runserver
+   python coursesService/manage.py runserver
    ```
+
+## Requirements
+See `requirements.txt` for full list. Key packages:
+```
+Django>=5.2
+djangorestframework>=3.14
+djangorestframework_simplejwt
+```
+
+## Testing
+Unit tests are in `base/tests.py`:
+```bash
+python coursesService/manage.py test base
+```
 
 ## Development Notes
 - All queries are ordered by `courseSubject` and `courseID` by default.
 - API filtering is case-insensitive for string fields.
 - Update `fixtures/initial_data.json` to change initial course data.
-- See `base/models.py` and `api/views.py` for implementation details.
+- See `base/models.py`, `api/views.py`, and `api/permissions.py` for implementation details.
+
+## Project Structure
+- `coursesService/` — Django project root
+  - `api/` — API views, serializers, permissions, urls
+  - `base/` — Models, tests, migrations
+  - `coursesService/` — Project settings, authentication, root urls
+  - `fixtures/` — Initial data
+  - `manage.py` — Django management script
+
+---
+For integration details, see the main project documentation.
 
