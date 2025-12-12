@@ -8,8 +8,12 @@ from base.models import Course
 from .serializers import CourseSerializer
 from .permissions import IsStudent, IsStaff, IsAdmin
 
-@api_view(['GET'])
 def test_routing(request):
+    """
+    Test endpoint to verify API routing is working.
+    
+    **GET**: Returns a simple message confirming routing.
+    """
     return Response({'message': 'API routing works'})
 
 @api_view(['GET'])
@@ -17,10 +21,14 @@ def test_routing(request):
 def apiOverview(request):
     """
     Returns a dictionary of available API endpoints for the courses service.
+
+    **GET**: Returns a dictionary of endpoint names and their paths.
     """
     endpoints = {
         'getCourses': '/api/courses/',
-        # Add other endpoints as needed
+        'createCourse': '/api/courses/create/',
+        'deleteCourse': '/api/courses/<courseSubject>/<courseID>/delete/',
+        'testRouting': '/api/test-routing/',
     }
     return Response(endpoints)
 
@@ -29,7 +37,15 @@ def apiOverview(request):
 def getCourses(request):
     """
     Retrieve a list of courses, optionally filtered by query parameters.
-    Supported filters: courseSubject, courseID, title, instructor.
+
+    **GET**: Returns a list of courses.
+
+    Query Parameters:
+        - courseSubject: Filter by course subject (case-insensitive, partial match)
+        - courseID: Filter by course ID (exact match)
+        - title: Filter by course title (case-insensitive, partial match)
+        - instructor: Filter by instructor name (case-insensitive, partial match)
+
     Results are always ordered by courseSubject and courseID.
     """
     # Get all courses
@@ -63,6 +79,17 @@ def getCourses(request):
 def createCourse(request):
     """
     Create a new course and its associated discussion.
+
+    **POST**: Creates a new course. Also creates a discussion thread for the course in the discussions service.
+
+    Request Body:
+        - courseSubject: string
+        - courseID: integer
+        - title: string
+        - instructor: string
+        - ... (other fields as required by CourseSerializer)
+
+    Returns the created course data on success.
     """
     serializer = CourseSerializer(data=request.data)
     if serializer.is_valid():
@@ -88,6 +115,14 @@ def createCourse(request):
 def deleteCourse(request, courseSubject, courseID):
     """
     Delete a course and its associated discussion.
+
+    **DELETE**: Deletes the specified course and its discussion thread.
+
+    Path Parameters:
+        - courseSubject: string (case-insensitive)
+        - courseID: integer
+
+    Returns 204 No Content on success, or 404 if the course does not exist.
     """
     qs = Course.objects.filter(courseSubject__iexact=courseSubject, courseID=courseID)
     try:

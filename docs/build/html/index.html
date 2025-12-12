@@ -57,6 +57,73 @@ make<span class="w"> </span>html
 <h2>Test Report<a class="headerlink" href="#test-report" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="test_report.html">View the latest test report</a></p>
 </section>
+<section id="module-api.views">
+<span id="api-documentation"></span><h2>API Documentation<a class="headerlink" href="#module-api.views" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="api.views.apiOverview">
+<span class="sig-prename descclassname"><span class="pre">api.views.</span></span><span class="sig-name descname"><span class="pre">apiOverview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.apiOverview" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of available API endpoints for the courses service.</p>
+<p><strong>GET</strong>: Returns a dictionary of endpoint names and their paths.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.views.createCourse">
+<span class="sig-prename descclassname"><span class="pre">api.views.</span></span><span class="sig-name descname"><span class="pre">createCourse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.createCourse" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new course and its associated discussion.</p>
+<p><strong>POST</strong>: Creates a new course. Also creates a discussion thread for the course in the discussions service.</p>
+<dl class="simple">
+<dt>Request Body:</dt><dd><ul class="simple">
+<li><p>courseSubject: string</p></li>
+<li><p>courseID: integer</p></li>
+<li><p>title: string</p></li>
+<li><p>instructor: string</p></li>
+<li><p>… (other fields as required by CourseSerializer)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns the created course data on success.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.views.deleteCourse">
+<span class="sig-prename descclassname"><span class="pre">api.views.</span></span><span class="sig-name descname"><span class="pre">deleteCourse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.deleteCourse" title="Link to this definition">¶</a></dt>
+<dd><p>Delete a course and its associated discussion.</p>
+<p><strong>DELETE</strong>: Deletes the specified course and its discussion thread.</p>
+<dl class="simple">
+<dt>Path Parameters:</dt><dd><ul class="simple">
+<li><p>courseSubject: string (case-insensitive)</p></li>
+<li><p>courseID: integer</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns 204 No Content on success, or 404 if the course does not exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.views.getCourses">
+<span class="sig-prename descclassname"><span class="pre">api.views.</span></span><span class="sig-name descname"><span class="pre">getCourses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.getCourses" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a list of courses, optionally filtered by query parameters.</p>
+<p><strong>GET</strong>: Returns a list of courses.</p>
+<dl class="simple">
+<dt>Query Parameters:</dt><dd><ul class="simple">
+<li><p>courseSubject: Filter by course subject (case-insensitive, partial match)</p></li>
+<li><p>courseID: Filter by course ID (exact match)</p></li>
+<li><p>title: Filter by course title (case-insensitive, partial match)</p></li>
+<li><p>instructor: Filter by instructor name (case-insensitive, partial match)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Results are always ordered by courseSubject and courseID.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.views.test_routing">
+<span class="sig-prename descclassname"><span class="pre">api.views.</span></span><span class="sig-name descname"><span class="pre">test_routing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.test_routing" title="Link to this definition">¶</a></dt>
+<dd><p>Test endpoint to verify API routing is working.</p>
+<p><strong>GET</strong>: Returns a simple message confirming routing.</p>
+</dd></dl>
+
+</section>
 </section>
 
 

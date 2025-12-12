@@ -25,6 +25,15 @@ To build the Sphinx HTML documentation:
 
 Open ``docs/build/html/index.html`` in your browser to view the documentation.
 
+
 Test Report
 -----------
 `View the latest test report <test_report.html>`_
+
+
+API Documentation
+-----------------
+.. automodule:: api.views
+	:members:
+	:undoc-members:
+	:show-inheritance:
